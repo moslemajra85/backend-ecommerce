@@ -32,6 +32,7 @@ userSchema.methods.generateToken = function () {
   const token = jwt.sign(
     {
       _id: this._id,
+      isAdmin: this.isAdmin,
     },
     process.env.SECRET
   );

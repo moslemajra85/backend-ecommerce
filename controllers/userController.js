@@ -65,7 +65,7 @@ const login = async (req, res) => {
     }
 
     const token = user.generateToken();
-    res.send({ token, user });
+    res.send({ token, user: _.pick(user, ['name', 'email', 'isAdmin']) });
   } catch (error) {
     res.status(500).send(error);
   }
@@ -74,7 +74,6 @@ const login = async (req, res) => {
 const getCurrentUser = async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select('-password');
-    console.log(req.user);
     return res.status(200).send(user);
   } catch (error) {
     res.status(500).send(error);
