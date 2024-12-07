@@ -10,7 +10,8 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
+app.use(cors({ origin: 'https://my-company-five.vercel.app' }));
 
 app.get('/', (req, res) => {
   res.send('Backend is working!');
